@@ -11,7 +11,7 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 # Build application
 COPY . .
-RUN cargo build --release --bin app
+RUN cargo install --path .
 
 FROM debian:buster-slim as runner
 COPY --from=builder /usr/local/cargo/bin/api-service /usr/local/bin/api-service
