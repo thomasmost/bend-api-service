@@ -12,5 +12,5 @@ fn hello(name: &str) -> String {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::ignite().mount("/hello", routes![index, hello]);
 }
