@@ -1,5 +1,10 @@
 use rocket::response::content;
 
+#[get("/")]
+pub fn index() -> &'static str {
+    "OK"
+}
+
 #[get("/info")]
 pub fn info() -> content::Json<String> {
     let version = env!("CARGO_PKG_VERSION");
@@ -9,5 +14,7 @@ pub fn info() -> content::Json<String> {
 
 #[get("/models")]
 pub fn models() -> content::Json<&'static str> {
+    // orgs::list()
     content::Json("{}")
 }
+
