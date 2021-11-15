@@ -18,3 +18,4 @@ Publishing the Image
 
 1. Run `gcloud sql connect bend-db --user=postgres --project PROJECT_ID`
 2. You can now run migrations for 5 minutes with Diesel
+  - Using: `DATABASE_URL=postgres://postgres:root@{YOUR_DB_PUBLIC_IP}/bend-db`
