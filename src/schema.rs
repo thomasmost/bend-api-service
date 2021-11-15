@@ -1,5 +1,5 @@
 table! {
-    activity (id) {
+    activities (id) {
         id -> Uuid,
         org_id -> Uuid,
         activity_message -> Varchar,
@@ -9,7 +9,7 @@ table! {
 }
 
 table! {
-    commitment (id) {
+    commitments (id) {
         id -> Uuid,
         org_id -> Uuid,
         target_year -> Nullable<Int2>,
@@ -23,19 +23,19 @@ table! {
 }
 
 table! {
-    org (id) {
+    orgs (id) {
         id -> Uuid,
         name -> Varchar,
+        description -> Nullable<Text>,
         stock_symbol -> Nullable<Varchar>,
         twitter -> Nullable<Varchar>,
         website -> Nullable<Varchar>,
-        description -> Nullable<Text>,
         created_at -> Timestamp,
     }
 }
 
 table! {
-    performance (id) {
+    performances (id) {
         id -> Uuid,
         org_id -> Uuid,
         fy -> Nullable<Int8>,
@@ -50,8 +50,8 @@ table! {
 }
 
 allow_tables_to_appear_in_same_query!(
-    activity,
-    commitment,
-    org,
-    performance,
+    activities,
+    commitments,
+    orgs,
+    performances,
 );

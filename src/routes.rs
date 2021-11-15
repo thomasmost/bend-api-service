@@ -1,5 +1,7 @@
 use rocket::response::content;
 
+use crate::org;
+
 #[get("/")]
 pub fn index() -> &'static str {
     "OK"
@@ -12,9 +14,9 @@ pub fn info() -> content::Json<String> {
     content::Json(content)
 }
 
-#[get("/models")]
-pub fn models() -> content::Json<&'static str> {
-    // orgs::list()
-    content::Json("{}")
+#[get("/model_list")]
+pub fn model_list() -> content::Json<String> {
+    let count = org::Org::count();
+    let content = format!("{{ count: {} }}", count);
+    content::Json(content)
 }
-

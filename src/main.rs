@@ -1,17 +1,18 @@
 #[macro_use]
 extern crate rocket;
+#[macro_use]
 extern crate diesel;
 extern crate dotenv;
 
 mod db;
 mod routes;
-// mod orgs;
-use routes::{index, info, models};
+mod org;
+mod schema;
+use routes::{index, info, model_list};
 
 #[launch]
 fn rocket() -> _ {
-    let pool = db::establish_connection();
     rocket::build()
     .mount("/", routes![index])
-    .mount("/v0", routes![info, models])
+    .mount("/v0", routes![info, model_list])
 }

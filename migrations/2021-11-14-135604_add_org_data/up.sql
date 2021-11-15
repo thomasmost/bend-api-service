@@ -1,6 +1,6 @@
 -- Your SQL goes here
 
-CREATE TABLE activity (
+CREATE TABLE activities (
   id uuid DEFAULT uuid_generate_v1(),
   org_id uuid NOT NULL,
   activity_message VARCHAR NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE activity (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE commitment (
+CREATE TABLE commitments (
   id uuid DEFAULT uuid_generate_v1(),
   org_id uuid NOT NULL,
   target_year smallint NULL,
@@ -22,7 +22,7 @@ CREATE TABLE commitment (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE performance (
+CREATE TABLE performances (
   id uuid DEFAULT uuid_generate_v1(),
   org_id uuid NOT NULL,
   fy bigint,
