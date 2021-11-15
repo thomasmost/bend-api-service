@@ -14,6 +14,9 @@ COPY . .
 RUN cargo install --path .
 
 FROM debian:buster-slim as runner
+RUN apt-get update -y
+# libpq necessary for diesel's postgres integration
+RUN apt-get install -y libpq-dev
 COPY --from=builder /usr/local/cargo/bin/api-service /usr/local/bin/api-service
 ENV ROCKET_ADDRESS=0.0.0.0
 EXPOSE 8000
