@@ -1,13 +1,14 @@
 use diesel;
 use diesel::prelude::*;
 use diesel::pg::PgConnection;
+use serde::{Serialize};
 
 use uuid::Uuid;
 
 use crate::db::establish_connection;
 use crate::schema::orgs;
 
-#[derive(AsChangeset, Queryable)]
+#[derive(AsChangeset, Queryable, Serialize)]
 pub struct Org {
     pub id: Uuid,
     pub name: String,
@@ -35,9 +36,10 @@ impl Org {
             .expect("Error creating new org");
     }
 
-    // pub fn read(connection: &PgConnection) -> Vec<Org> {
-    //     orgs::table.order(orgs::id).load::<Org>(connection).unwrap()
-    // }
+    pub fn read() -> Vec<Org> {
+        let connection = establish_connection();
+        orgs::table.load::<Org>(&connection).unwrap()
+    }
     
     pub fn count() -> usize {
         let connection = establish_connection();

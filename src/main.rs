@@ -10,12 +10,12 @@ mod routes;
 mod org;
 mod schema;
 use catchers::{internal_error};
-use routes::{index, info, model_list};
+use routes::{index, info, model_list, orgs};
 
 #[launch]
 fn rocket() -> _ {
     rocket::build()
     .register("/", catchers![internal_error])
     .mount("/", routes![index])
-    .mount("/v0", routes![info, model_list])
+    .mount("/v0", routes![info, model_list, orgs])
 }

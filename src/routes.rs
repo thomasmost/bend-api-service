@@ -1,4 +1,5 @@
 use rocket::response::content;
+use rocket::serde::json::{Value, json};
 
 use crate::org;
 
@@ -19,4 +20,10 @@ pub fn model_list() -> content::Json<String> {
     let count = org::Org::count();
     let content = format!("{{ count: {} }}", count);
     content::Json(content)
+}
+
+#[get("/orgs")]
+pub fn orgs() -> Value {
+    let orgs = org::Org::read();
+    json!(orgs)
 }
